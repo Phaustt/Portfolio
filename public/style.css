@@ -1,0 +1,366 @@
+@font-face {
+    font-family: 'Pixel';
+    src: url(fonts/m5x7.ttf);
+}
+
+body {
+    font-family: "Pixel";
+    font-size: large;
+    background-color: black;
+    margin: 0;
+    overflow: hidden;
+}
+
+.wrapper{
+    height: 100vh;
+    padding: 0;
+    border: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.top-banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    border-bottom-color: white;
+    border-style: solid;
+    border-width: 2px;
+
+    background-color: black;
+}
+
+.top-banner-item {
+    margin-left: 1%;
+    margin-right: 1%;
+    font-size: larger;
+    color: white;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-basis: 100%;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 90%;
+    background-color:black;
+}
+
+.window{
+    display: flex;
+    flex-direction: row;
+    flex-basis: 100%;
+
+    border-radius: 25px;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    margin: 1rem;
+    background-color: black;
+}
+
+.library{
+    
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 25px 25px 25px 25px;
+
+    background-color: white;
+    --dotSize: 0.03rem;
+    --bgSize: 0.17rem;
+    --bgPosition: calc(var(--bgSize) / 2);
+    
+    background-image: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) var(--dotSize),
+      transparent 0
+    ), radial-gradient(circle at center, rgb(207, 207, 207) var(--dotSize), transparent 0);
+    background-size: var(--bgSize) var(--bgSize);
+    background-position: 0 0, var(--bgPosition) var(--bgPosition);
+}
+
+.library-title{
+    display: none;
+
+    color: white;
+    font-size:large;
+    font-weight: 500;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+.library-navigation{
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    border-width: 1px;
+}
+
+.nav-button{
+    font-family: 'Pixel';
+    font-size: large;
+
+    color: #000;
+    background-color: white;
+    cursor: pointer;
+    border: 3px solid;
+    padding: 0.25em 0.5em;
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+}
+.nav-button:active{
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
+}
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
+}
+
+.library-container{
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    height: 72vh;
+    padding-left: 1%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 3%;
+}
+
+.project-card
+{
+    height: 100%;
+    width: 30%;
+
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: repeat(14, 1fr);
+
+    justify-content: center;
+
+    background-color:black;
+}
+
+.project-title{
+    margin-left: 2%;
+    margin-right: -2%;
+    grid-column: 1 / span 2;
+    grid-row: 1/ span 1;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    background-color: white;
+}
+
+.video-wrapper{
+    grid-column: 1 / span 1;
+    grid-row: 2/ span 5;
+
+
+    overflow: hidden;
+    
+}
+
+.project-video{
+    height: 100%;
+
+    padding-left: 5%;
+    padding-top: 5%;
+    padding-bottom: 2%;
+
+    box-sizing: border-box;
+}
+
+.project-links
+{
+    padding: 10%;
+    padding-top: 15%;
+    padding-bottom: 15%;
+
+    grid-column: 2/ span 1;
+    grid-row: 2/ span 5;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: start;
+}
+
+.link
+{
+    height: 20%;
+    font-family: 'Pixel';
+    background-color: white;
+    border-radius: 25px;
+    border: 1px solid black;
+    font-size: large;
+}
+.link:hover{
+    font-family: 'Pixel';
+    background-color: white;
+    border-radius: 25px;
+    border: 1px solid black;
+    font-size: larger;
+    height: 25%;
+}
+.link:active{
+    font-family: 'Pixel';
+    color: white;
+    background-color: black;
+    border-radius: 25px;
+    border: 1px solid white;
+}
+.link:empty
+{
+    display: none;
+}
+
+.project-description{
+    padding: 3%;
+    margin: 3%;
+
+    grid-column: 1/span 2;
+    grid-row: 7/ span 3;
+
+    border: 0.1px solid white;
+    border-radius: 5px;
+
+    color: white;
+    overflow-y: scroll;
+}
+
+.project-text{
+    padding: 3%;
+    margin: 3%;
+
+    grid-column: 1/span 2;
+    grid-row: 10/ span 5;
+
+    border: 0.1px solid white;
+    border-radius: 5px;
+
+    color: white;
+    overflow-y: scroll;
+}
+
+.articles{
+    flex-basis: 40%;
+
+    overflow-y: scroll;
+
+    border-left: 2px solid white;
+    color: white;
+    border-radius: 1px 25px 25px 1px;
+    background-color:black;
+}
+
+.bottom-banner{
+    color: white;
+    text-align: center;
+    background-color: black;
+}
+
+.side{
+    display: flex;
+    flex-direction: row;
+    flex-basis: 10%;
+    justify-content: space-between;
+    align-content: stretch;
+
+    background-color: black;
+}
+
+.side-left{
+    background-color: black;
+}
+
+.side-right{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 60%;
+
+    background-color: white;
+}
+
+.button-banner{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 2%;
+    margin: 10%;
+    flex-basis: 100%;
+
+    background-color:white;
+}
+
+.social-button{
+    height: auto;
+    width: fit-content;
+    background-color: transparent;
+    border: 1px solid white;
+}
+.social-button:hover{
+    height: auto;
+    width: fit-content;
+    
+    margin-left: -10%;
+    margin-right: -10%;
+}
+
+.social-button-image{
+    height: auto;
+    width: 80%;
+}
+
+
+.about{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.about-button{
+    background:url(images/AboutProfile.png) no-repeat;
+    background-size: contain;
+    padding: 60% 70%;
+    margin-left: -50%;
+    margin-right: 50%;
+
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.about-button:hover{
+    background:url(images/AboutProfile-hover.png) no-repeat;
+    background-size: contain;
+}
+
+.about-text{
+    text-align: center;
+}
