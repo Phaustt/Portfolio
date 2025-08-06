@@ -12,11 +12,14 @@ app.listen(3000);
 
 //midleware & static files
 app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 //routes
 app.get('/', (req, res) => {
-    res.send(createHomepageTemplate());
+    res.sendFile(path.resolve(__dirname,'dist','index.html'));
 });
+
+const PORT = process.env.PORT || 3000;
 
 app.get('/cards', (req, res) => {
     var info = req.url.slice(7,req.url.length-1);
@@ -75,5 +78,5 @@ app.get('/cards/:title', (req, res) => {
 
 //404 page
 app.use((req,res)=>{
-    res.status(404).send(createHomepageTemplate());
+    res.status(404).sendFile(path.resolve(__dirname,'dist','index.html'));
 });
