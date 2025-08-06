@@ -8,17 +8,14 @@ const { default: CARD_DATA } = require('./data/data.js');
 const app = express();
 
 //listen request
-//app.listen(3000);
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, ()=>{console.log(`Server is running on port ${PORT}`);});
+app.listen(3000);
 
 //midleware & static files
 app.use(express.static('public'));
 
 //routes
 app.get('/', (req, res) => {
-    /*res.send(createHomepageTemplate());*/
-    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+    res.send(createHomepageTemplate());
 });
 
 app.get('/cards', (req, res) => {
