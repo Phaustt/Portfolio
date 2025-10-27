@@ -1,82 +1,78 @@
-const createHomepageTemplate = () => /*html*/`
-    <html>
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Caleb's Portfolio</title>
-            <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="style.css">
-        </head>
+const createCardTemplate = (card) => /*html*/`
 
-<body>
-    <div class="wrapper">
-
-        <div class="top-banner">
-            <div class="top-banner-item"> Caleb Aïdam </div>
-            <div class="top-banner-item"> Game developpeur </div>
-            <div class="top-banner-item">  </div>
+        <div class="project-title">
+            <div> ${card.Project_Title} </div>
+            <div> ${card.Duration} </div>
         </div>
 
-        <div class="container">
+        <div class="video-wrapper">
+            <video src="public/videos/${card.Media_Name}" class="project-video" controls></video>
+        </div>
 
-            <div class="main"> 
-                <div class="window">
-                    <div class="library">
-                        <div class="library-title">
-                            LIBRARY
-                        </div>
-
-                        <div class="library-navigation">
-                            <button hx-get="/cards" hx-target=".library-container" hx-trigger="click" name="name" class="nav-button">Tout</button>
-                            <button hx-get="/cards" hx-target=".library-container" hx-trigger="click" name="school" class="nav-button">Scolarité</button>
-                            <button hx-get="/cards" hx-target=".library-container" hx-trigger="click" name="game" class="nav-button">Jeu</button>
-                            <button hx-get="/cards" hx-target=".library-container" hx-trigger="click" name="prototype" class="nav-button">Prototype</button>
-                            <button hx-get="/cards" hx-target=".library-container" hx-trigger="click" name="gamejam" class="nav-button">Game Jam</button>
-                            <button hx-get="/cards" hx-target=".library-container" hx-trigger="click" name="tool" class="nav-button">Outils</button>
-                        </div>
-
-                        <div class="library-container"  hx-get="/cards" hx-trigger="load">
-                            <!-- card spanw point-->
-                        </div>
-                    </div>
-
-                    <!--<div class="articles">
-                        Articles
-                    </div>-->
-                </div>
-
-                <div class="bottom-banner">
-                    Latest update 27/07/2025
-                </div>
-            </div>
-
-            <div class="side"> 
-                <div class="side-left"></div>
-
-                <div class="side-right">
-                    <div class="button-banner">
-                        <button type="button" class="social-button" onclick="window.open('https://www.linkedin.com/in/caleb-aïdam/','_blank')"><img src="images/linkedin.png" alt="" class="social-button-image"></button>
-                        <button type="button" class="social-button" onclick="window.open('https://www.youtube.com/watch?v=HptHiJJJwBM','_blank')"><img src="images/github.png" alt="" class="social-button-image"></button>
-                        <button type="button" class="social-button" onclick="window.open('https://oopsi.itch.io','_blank')"><img src="images/itchio-logo-textless-black.png" alt="" class="social-button-image"></button>
-
-                    </div>
-
-                    <div class="about"> 
-
-                        <button type="button" class="about-button" onclick="window.open('docs/CV_CalebAIDAM.pdf','_blank')"></button>
-                        <div class="about-text"> ABOUT </div>
-                    
-                    </div>
-                </div>
-
-
-            </div>
+        <div class="project-links" id="${card.Project_Title}">
             
         </div>
+        <div class="project-description"> ${card.Description} </div>
+        <div class="project-text"> ${card.Text} </div>
 
-    </div>
-</body>
-    </html>  
-`
+`;
 
-export default createHomepageTemplate;
+function makeLink(link, name, id)
+{
+    const linkbutton = document.createElement("button");
+    document.getElementById(id).appendChild(linkbutton);
+    linkbutton.outerHTML = `<button class="link" onclick="window.open('${link}')">${name}</button>`;
+}
+
+function addLinks(card)
+{
+    console.log("fuck")
+    if(card.Button01_Name != null)
+    {
+        makeLink(card.Button01_Link, card.Button01_Name, card.Project_Title);
+    }
+    if(card.Button02_Name != null)
+    {
+        makeLink(card.Button02_Link, card.Button02_Name, card.Project_Title);
+    }
+    if(card.Button03_Name != null)
+    {
+        makeLink(card.Button03_Link, card.Button03_Name, card.Project_Title);
+    }
+    if(card.Button04_Name != null)
+    {
+        makeLink(card.Button04_Link, card.Button04_Name, card.Project_Title);
+    }
+}
+
+function clearLibrary()
+{
+    //const node = document.createElement("div");
+    //node.className = "library-container";
+    //node.id = "library-container";
+    document.getElementById("library-container").innerHTML = "";
+}
+
+function addCards(tag)
+{
+    clearLibrary();
+
+    index = 0;
+
+    CARD_DATA.forEach(card => {
+        if(card.Number.includes(tag))
+        {
+            const node = document.createElement("div");
+            node.className = "project-card";
+            node.innerHTML = createCardTemplate(CARD_DATA[index]);
+            document.getElementById("library-container").appendChild(node);
+
+            addLinks(card);
+        }
+        index++;
+    });
+}
+
+window.onload = function() {
+  addCards("0");
+};

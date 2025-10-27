@@ -8,10 +8,10 @@ const createCardTemplate = (card) => /*html*/`
         </div>
 
         <div class="video-wrapper">
-            <video src="videos/${card.Media_Name}" class="project-video" controls></video>
+            <video src="public/videos/${card.Media_Name}" class="project-video" controls></video>
         </div>
 
-        <div class="project-links" hx-get="/cards/${card.Project_Title}" hx-trigger="load">
+        <div class="project-links" hx-get="views/cards/${card.Project_Title}" hx-trigger="load">
             
         </div>
         <div class="project-description"> ${card.Description} </div>
